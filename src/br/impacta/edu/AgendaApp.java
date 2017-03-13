@@ -20,6 +20,7 @@ public class AgendaApp {
 		}
 out.println("\nFim do programa!");		
 	}
+	
 	private static int apresentarMenuPrincipal() {
 		boolean inteiro= false;
 		int opcao = 0;
@@ -31,17 +32,87 @@ out.println("\nFim do programa!");
 			out.println("Escolha uma opção");
 			String s = entrada.nextLine();
 			try{
-				opcao = integer.par
+				opcao = Integer.parseInt(s);
+				inteiro = true;
+			}catch(Exception e){
+		out.println("ERRO: opção deve ser um valor inteiro!");
+			}
+			}
+		return opcao;
+	}
+	private static void inserirContato(){
+		out.println("\nINSERÇÃO DE NOVO CONTATO:");
+		String nome = lerNome();
+		String telefone = lerTelefone();
+		Contato c = new Contato(nome, telefone);
+		if(contatos.contains(c)){
+			out.println("Este contato já existe");
+		}
+		else{
+			contatos.add(c);
+			out.print("contato inserido");
+			
+		}
+	}
+	private static String lerNome() {
+		boolean valido = false;
+		String nome = "";
+		while(!valido){
+			out.println("Nome: ");
+			nome = entrada.nextLine();
+			if (nome.length()==0 || nome.length()>200) {
+				System.out.println("ERRO: nome de tamanho inválido");
+			}else{valido = true;}
+			
+		}
+		return nome;
+	}
+		private static String lerTelefone(){
+			boolean valido = false;
+			String telefone = "";
+				while(!valido){
+				System.out.println("Telefone: ");
+				telefone = entrada.nextLine();
+				if (telefone.length()==0 || telefone.length()>25) {
+					System.out.println("ERRO: telefone de tamanho inválido!");
+				}else{valido = true;}
+			}
+			return telefone;
+			
+		}
+
+		private static void buscarContato() {
+			System.out.println("BUSCA CONTATOS: ");
+			String nome = lerNome();
+			List<Contato> resultado = new ArrayList<>();
+			for (Contato c: contatos) {
+				if (nome.equals(c.getNome())) {
+					resultado.add(c);
+				}
+			}
+			if (resultado.size() == 0) {
+				System.out.println("Não há contato com este nome!");
+			}else{
+				System.out.println("\nResultado da Busca:");
+				for (Contato c: resultado) {
+					System.out.println(c);
+					
+				}
+				
+				
 			}
 		}
-			
-			
+
+
+
+
+
+}		
+
+
 		
-	}		
 	
-		
 	
-}	
 	
 	
 	
